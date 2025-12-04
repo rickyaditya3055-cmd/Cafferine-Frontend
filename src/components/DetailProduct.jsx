@@ -29,7 +29,9 @@ const DetailProduct = () => {
         if (result.status === 'success' && result.data) {
           setProduct(result.data);
           // Fetch related products based on category
-          fetchRelatedProducts(result.data.category.cat_id);
+          if (result.data.category_id) {
+          fetchRelatedProducts(result.data.category_id);
+          }
         } else {
           throw new Error('Invalid data format received');
         }
@@ -83,7 +85,7 @@ const DetailProduct = () => {
 
   const handleQuantityChange = (value) => {
     const newQuantity = quantity + value;
-    if (newQuantity > 0 && product && newQuantity <= product.qty) {
+    if (newQuantity > 0 && product && newQuantity <= parseInt(product.qty)) {
       setQuantity(newQuantity);
     }
   };
@@ -183,7 +185,7 @@ const DetailProduct = () => {
             <span className="breadcrumb-separator">/</span>
             <span>Products</span>
             <span className="breadcrumb-separator">/</span>
-            <span>{product.category.cat_name}</span>
+            <span>{product.category?.cat_name ?? 'Uncategorized'}</span>
             <span className="breadcrumb-separator">/</span>
             <span className="breadcrumb-current">{product.pro_name}</span>
           </div>
@@ -230,7 +232,7 @@ const DetailProduct = () => {
 
           <div className="detail-info">
             <div className="detail-header">
-              <div className="detail-category">{product.category.cat_name}</div>
+              <div className="detail-category">{product.category?.cat_name ?? 'Uncategorized'}</div>
               <h1 className="detail-title">{product.pro_name}</h1>
 
               <div className="detail-meta">
@@ -257,7 +259,7 @@ const DetailProduct = () => {
                     </div>
                   </>
                 ) : (
-                  <div className="detail-price">${parseFloat(product.price).toFixed(2)}</div>
+                  <div className="detail-price">Rp{parseFloat(product.price).toFixed(2)}</div>
                 )}
               </div>
             </div>
@@ -360,7 +362,7 @@ const DetailProduct = () => {
                 <button
                   className="quantity-btn"
                   onClick={() => handleQuantityChange(1)}
-                  disabled={!product.qty || quantity >= product.qty}
+                  disabled={!product.qty || quantity >= parseInt(product.qty)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -429,7 +431,7 @@ const DetailProduct = () => {
                 </svg>
                 <div className="info-content">
                   <span className="info-title">Free Shipping</span>
-                  <span className="info-text">On orders over $50</span>
+                  <span className="info-text">On orders</span>
                 </div>
               </div>
 
@@ -504,7 +506,7 @@ const DetailProduct = () => {
                       {parseFloat(relatedProduct.discount) > 0 ? (
                         <>${calculateDiscountedPrice(relatedProduct.price, relatedProduct.discount)}</>
                       ) : (
-                        <>${parseFloat(relatedProduct.price).toFixed(2)}</>
+                        <>Rp{parseFloat(relatedProduct.price).toFixed(2)}</>
                       )}
                     </div>
                   </div>

@@ -8,11 +8,10 @@ import Imagesgrid from "../Imagesgrid";
 const Homepage = () => {
     return (
         <div>
-            <Hero></Hero>
-            
+            <Hero></Hero>         
             <CardProduct></CardProduct>
-            <Imagesgrid></Imagesgrid>
-            <Features></Features>
+            {/* <Imagesgrid></Imagesgrid>
+            <Features></Features> */}
            
         </div>
     )

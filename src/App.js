@@ -16,6 +16,7 @@ import Login from './components/Auth/Login';
 import Account from './components/Account';
 import About from './components/About';
 import Contactpage from './components/pages/Contactpage';
+import POSCheckout from './components/POSCheckout';
 
 function App() {
   return (
@@ -33,13 +34,14 @@ function App() {
                 <Route path="/features" element={<Features />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} /> {/* Add Checkout route */}
+                <Route path="/pos" element={<POSCheckout />} /> {/* Add POSCheckout route */}
                 <Route path="/account/orders" element={<OrderHistory />} /> {/* Add OrderHistory route */}
                 <Route path="/contact" element={<Contactpage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/account" element={<Account />} />
               </Routes>
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </Router>
       </CartProvider>

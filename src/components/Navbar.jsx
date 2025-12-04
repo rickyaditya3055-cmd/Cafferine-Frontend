@@ -6,7 +6,7 @@ import './styles/Navbar.css';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cartCount } = useCart(); // Get cartCount from context
   const location = useLocation();
 
@@ -27,20 +27,20 @@ const Navbar = () => {
   }, []);
 
   // Close mobile menu when route changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setIsSearchOpen(false);
-  }, [location]);
+  // useEffect(() => {
+  //   setIsMobileMenuOpen(false);
+  //   setIsSearchOpen(false);
+  // }, [location]);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isSearchOpen) setIsSearchOpen(false);
-  };
+  // const toggleMobileMenu = () => {
+  //   setIsMobileMenuOpen(!isMobileMenuOpen);
+  //   if (isSearchOpen) setIsSearchOpen(false);
+  // };
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-    if (isMobileMenuOpen) setIsMobileMenuOpen(false);
-  };
+  // const toggleSearch = () => {
+  //   setIsSearchOpen(!isSearchOpen);
+  //   if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+  // };
 
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="nav-glow-orb nav-glow-1"></div>
       <div className="nav-container">
         <div className="nav-logo">
-          <Link to="/">Delicious<span>Eats</span></Link>
+          <Link to="/">Caffe<span>Rine</span></Link>
         </div>
 
         <nav className={`nav-links ${isMobileMenuOpen ? 'nav-active' : ''}`}>
@@ -65,14 +65,14 @@ const Navbar = () => {
             <li className="nav-item">
               <Link to="/about" className="nav-link">About</Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/contact" className="nav-link">Contact</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
 
         <div className="nav-actions">
-          <div className={`search-container ${isSearchOpen ? 'search-active' : ''}`}>
+          {/* <div className={`search-container ${isSearchOpen ? 'search-active' : ''}`}>
             <input
               type="text"
               placeholder="Search products..."
@@ -92,7 +92,7 @@ const Navbar = () => {
                 />
               </svg>
             </button>
-          </div>
+          </div> */}
 
           <Link to="/account" className="action-icon-wrapper">
             <svg
@@ -123,11 +123,11 @@ const Navbar = () => {
             {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
           </Link>
 
-          <button className="mobile-toggle" onClick={toggleMobileMenu}>
+          {/* <button className="mobile-toggle" onClick={toggleMobileMenu}>
             <div className={`toggle-bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
             <div className={`toggle-bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
             <div className={`toggle-bar ${isMobileMenuOpen ? 'open' : ''}`}></div>
-          </button>
+          </button> */}
         </div>
       </div>
 

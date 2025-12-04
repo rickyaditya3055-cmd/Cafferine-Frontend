@@ -11,32 +11,32 @@ const About = () => {
             
             <div className="about-container">
                 <div className="about-header">
-                    <div className="about-badge">Est. 2025 • Phnom Penh</div>
+                    <div className="about-badge">Didirikan 2025 • Surabaya</div>
                     <h2 className="about-title">
-                        The Vision Behind
-                        <span className="about-title-accent" data-text="DeliciousEats">DeliciousEats</span>
+                        Visi di Balik
+                        <span className="about-title-accent" data-text="CaffeRine">CaffeRine</span>
                     </h2>
                     <p className="about-subtitle">
-                        Where futuristic cuisine meets innovative beverages for the digital generation
+                        Tempat di mana Kafe futuristik bertemu dengan minuman inovatif untuk generasi digital
                     </p>
                 </div>
                 
-                <div className="about-content">
+                {/* <div className="about-content">
                     <div className="about-image-container">
                         <div className="about-image-wrapper">
                             <div className="about-image-glow"></div>
-                            <img src="https://tedboycnd-cdhwdbg6ard6f4cp.z01.azurefd.net/images/thumbs/0005435_soft-drink.jpeg" alt="Our futuristic beverages" className="about-image" />
-                            <div className="about-image-badge">Established 2025</div>
+                            <img src="https://tedboycnd-cdhwdbg6ard6f4cp.z01.azurefd.net/images/thumbs/0005435_soft-drink.jpeg" alt="Minuman futuristik kami" className="about-image" />
+                            <div className="about-image-badge">Sejak 2025</div>
                         </div>
                     </div>
                     
                     <div className="about-text-container">
                         <p className="about-text">
-                            Founded in the vibrant tech district of Phnom Penh, DeliciousEats began with a bold vision: to create a complete culinary experience where food, drinks, and craft beer merge with cutting-edge technology.
+                            Berdiri di Surabaya, CaffeRine hadir dengan visi berani: menciptakan pengalaman Kafe lengkap di mana makanan, minuman, dan snack khas berpadu dengan teknologi mutakhir.
                         </p>
                         
                         <p className="about-text">
-                            Our team of culinary scientists and mixologists collaborate to craft unique flavor profiles that enhance your digital lifestyle. From neuro-enhancing craft beers to mood-balancing entrees and energy-boosting beverages, we've developed a menu that stands at the intersection of gastronomy and science.
+                            Tim kami bekerja sama untuk merancang cita rasa unik yang mendukung gaya hidup digital Anda. Dari Kopi yang meningkatkan fokus, hidangan yang menyeimbangkan suasana hati, hingga minuman yang menambah energi — semua kami kembangkan di persimpangan antara gastronomi dan sains.
                         </p>
                         
                         <div className="about-highlights">
@@ -46,7 +46,7 @@ const About = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                     </svg>
                                 </div>
-                                <span className="highlight-text">Lab Crafted</span>
+                                <span className="highlight-text">Diracik di Laboratorium</span>
                             </div>
                             
                             <div className="about-highlight-item">
@@ -55,7 +55,7 @@ const About = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h.5A2.5 2.5 0 0020 5.5v-1.65" />
                                     </svg>
                                 </div>
-                                <span className="highlight-text">Locally Sourced</span>
+                                <span className="highlight-text">Bahan Lokal Pilihan</span>
                             </div>
                             
                             <div className="about-highlight-item">
@@ -64,13 +64,13 @@ const About = () => {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
                                 </div>
-                                <span className="highlight-text">Eco-Friendly</span>
+                                <span className="highlight-text">Ramah Lingkungan</span>
                             </div>
                         </div>
                         
                         <div className="about-cta">
                             <a href="#our-story" className="about-cta-button">
-                                <span className="cta-text">Our Full Story</span>
+                                <span className="cta-text">Kisah Lengkap Kami</span>
                                 <span className="cta-pulse"></span>
                             </a>
                         </div>
@@ -86,7 +86,7 @@ const About = () => {
                         </div>
                         <div className="stat-content">
                             <span className="stat-number">30+</span>
-                            <span className="stat-label">Signature Dishes</span>
+                            <span className="stat-label">Menu Andalan</span>
                         </div>
                     </div>
                     
@@ -98,7 +98,7 @@ const About = () => {
                         </div>
                         <div className="stat-content">
                             <span className="stat-number">25+</span>
-                            <span className="stat-label">Craft Beverages</span>
+                            <span className="stat-label">Minuman Racikan</span>
                         </div>
                     </div>
                     
@@ -109,14 +109,14 @@ const About = () => {
                             </svg>
                         </div>
                         <div className="stat-content">
-                            <span className="stat-number">50,000+</span>
-                            <span className="stat-label">Happy Customers</span>
+                            <span className="stat-number">50.000+</span>
+                            <span className="stat-label">Pelanggan Puas</span>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 
-                <div className="about-experience">
-                    <h3 className="experience-title">Our <span className="experience-title-accent">Culinary Universe</span></h3>
+                {/* <div className="about-experience">
+                    <h3 className="experience-title">Semesta <span className="experience-title-accent">Kuliner Kami</span></h3>
                     
                     <div className="experience-grid">
                         <div className="experience-card">
@@ -125,9 +125,9 @@ const About = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                             </div>
-                            <h4 className="experience-name">Digital Dining</h4>
+                            <h4 className="experience-name">Makan Digital</h4>
                             <p className="experience-description">
-                                Interactive food experiences with augmented reality presentations and flavor-enhancing tech
+                                Pengalaman kuliner interaktif dengan presentasi augmented reality dan teknologi peningkat rasa
                             </p>
                         </div>
                         
@@ -137,9 +137,9 @@ const About = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                                 </svg>
                             </div>
-                            <h4 className="experience-name">Craft Brewery</h4>
+                            <h4 className="experience-name">Pabrik Bir Kriya</h4>
                             <p className="experience-description">
-                                Small-batch neuro-enhanced beers brewed with cognitive-boosting ingredients and exotic flavor profiles
+                                Bir rumahan berteknologi tinggi dengan bahan yang meningkatkan konsentrasi dan rasa eksotis
                             </p>
                         </div>
                         
@@ -149,89 +149,50 @@ const About = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                                 </svg>
                             </div>
-                            <h4 className="experience-name">Mixology Lab</h4>
+                            <h4 className="experience-name">Laboratorium Mixology</h4>
                             <p className="experience-description">
-                                Advanced beverage engineering with molecular techniques and mood-enhancing compounds
+                                Rekayasa minuman canggih dengan teknik molekuler dan bahan yang menyeimbangkan suasana hati
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 
                 <div className="about-team">
-                    <h3 className="team-title">Meet Our <span className="team-title-accent">Culinary Team</span></h3>
+                    <h3 className="team-title">Kenali <span className="team-title-accent">Tim Kami</span></h3>
                     
-                    <div className="team-members ">
-                        <div className="team-member-card">
-                            <div className="member-image-container">
-                                <div className="member-image-glow"></div>
-                                <img src="https://i.pinimg.com/736x/ed/0a/1e/ed0a1e01f31048314bbb5320acf9e813.jpg" alt="Team member" className="member-image" />
+                    <div className="team-members">
+                        {[
+                            { 
+                                name: "Ricky Aditya", 
+                                role: "Programmer", 
+                                bio: "Saya dan anjing anjing saya",
+                                image: "/assets/team/ricky.jpg"
+                            },
+                            { 
+                                name: "Raditya Prasetyawan Suwandi", 
+                                role: "Programmer", 
+                                bio: "Ahli MLML",
+                                image: "/assets/team/raditya.jpg"
+                            },
+                            { 
+                                name: "Verto Darian Iskariman", 
+                                role: "Programmer", 
+                                bio: "Kameramen Bokep",
+                                image: "/assets/team/verto.jpg"
+                            },
+                            ].map((member, i) => (
+                            <div className="team-member-card" key={i}>
+                                <div className="member-image-container">
+                                    <div className="member-image-glow"></div>
+                                    <img src={member.image} alt={member.name} className="member-image" />
+                                </div>
+                                <div className="member-info">
+                                    <h4 className="member-name">{member.name}</h4>
+                                    <p className="member-role">{member.role}</p>
+                                    <p className="member-bio">{member.bio}</p>
+                                </div>
                             </div>
-                            <div className="member-info">
-                                <h4 className="member-name">Thy Muoyhak</h4>
-                                <p className="member-role">Programmer</p>
-                                <p className="member-bio">Visionary behind DeliciousEats, with 15+ years in culinary innovation</p>
-                            </div>
-                        </div>
-                        
-                        <div className="team-member-card">
-                            <div className="member-image-container">
-                                <div className="member-image-glow"></div>
-                                <img src="https://i.pinimg.com/736x/ed/0a/1e/ed0a1e01f31048314bbb5320acf9e813.jpg" alt="Team member" className="member-image" />
-                            </div>
-                            <div className="member-info">
-                                <h4 className="member-name">Rin Sreynich</h4>
-                                <p className="member-role">Programmer</p>
-                                <p className="member-bio">Expert drink engineer creating our signature beverage profiles</p>
-                            </div>
-                        </div>
-                        
-                        <div className="team-member-card">
-                            <div className="member-image-container">
-                                <div className="member-image-glow"></div>
-                                <img src="https://i.pinimg.com/736x/ed/0a/1e/ed0a1e01f31048314bbb5320acf9e813.jpg" alt="Team member" className="member-image" />
-                            </div>
-                            <div className="member-info">
-                                <h4 className="member-name">Cheoun Daro</h4>
-                                <p className="member-role">Programmer</p>
-                                <p className="member-bio">Crafts our neuro-enhanced beers with cutting-edge brewing techniques</p>
-                            </div>
-                        </div>
-                        <div className="team-member-card">
-                            <div className="member-image-container">
-                                <div className="member-image-glow"></div>
-                                <img src="https://i.pinimg.com/736x/ed/0a/1e/ed0a1e01f31048314bbb5320acf9e813.jpg" alt="Team member" className="member-image" />
-                            </div>
-                            <div className="member-info">
-                                <h4 className="member-name">Vuth Kunthy</h4>
-                                <p className="member-role">Programmer</p>
-                                <p className="member-bio">Visionary behind DeliciousEats, with 15+ years in culinary innovation</p>
-                            </div>
-                        </div>
-                        
-                        <div className="team-member-card">
-                            <div className="member-image-container">
-                                <div className="member-image-glow"></div>
-                                <img  src="https://i.pinimg.com/736x/ed/0a/1e/ed0a1e01f31048314bbb5320acf9e813.jpg" alt="Team member" className="member-image" />
-                            </div>
-                            <div className="member-info">
-                                <h4 className="member-name">Nheam Sokmean</h4>
-                                <p className="member-role">Programmer</p>
-                                <p className="member-bio">Expert drink engineer creating our signature beverage profiles</p>
-                            </div>
-                        </div>
-                         <div className="team-member-card">
-                            <div className="member-image-container">
-                                <div className="member-image-glow"></div>
-                                <img  src="https://i.pinimg.com/736x/ed/0a/1e/ed0a1e01f31048314bbb5320acf9e813.jpg" alt="Team member" className="member-image" />
-                            </div>
-                            <div className="member-info">
-                                <h4 className="member-name">Nheam Sokmean</h4>
-                                <p className="member-role">Programmer</p>
-                                <p className="member-bio">Expert drink engineer creating our signature beverage profiles</p>
-                            </div>
-                        </div>
-                        
-                        
+                        ))}
                     </div>
                 </div>
             </div>

@@ -7,6 +7,13 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // State untuk animasi count-up
+  const [stats, setStats] = useState({
+    orders: 0,
+    delivery: 0,
+    rating: 0,
+  });
+
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
@@ -32,6 +39,43 @@ const Hero = () => {
     fetchHeroData();
   }, []);
 
+    // Efek animasi count-up saat komponen pertama kali muncul
+  useEffect(() => {
+    const duration = 5000; // durasi animasi 2 detik
+    const fps = 60; // frame per second
+    const steps = (duration / 1000) * fps;
+
+    const endValues = {
+      orders: 5000,
+      delivery: 15,
+      rating: 4.9,
+    };
+
+    let currentStep = 0;
+
+    const interval = setInterval(() => {
+      currentStep++;
+      setStats({
+        orders: Math.min(
+          Math.floor((endValues.orders * currentStep) / steps),
+          endValues.orders
+        ),
+        delivery: Math.min(
+          Math.floor((endValues.delivery * currentStep) / steps),
+          endValues.delivery
+        ),
+        rating: Math.min(
+          ((endValues.rating * currentStep) / steps).toFixed(1),
+          endValues.rating
+        ),
+      });
+
+      if (currentStep >= steps) clearInterval(interval);
+    }, 1000 / fps);
+
+    return () => clearInterval(interval);
+  }, []);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -51,20 +95,20 @@ const Hero = () => {
 
       <div className="hero-container">
         <div className="hero-content">
-          <div className="hero-badge">Premium Quality • Fast Delivery</div>
+          <div className="hero-badge">Manyar Rejo 14 • Surabaya</div>
           <h1 className="hero-title">
             {heroData?.main_title || 'Futuristic Drinks'}
-            <span className="hero-title-accent">For The Digital Age</span>
+            <span className="hero-title-accent">#NgopiDiCaffeRine</span>
           </h1>
           <p className="hero-description">
             {heroData?.description || 'Experience our curated selection of next-gen beverages and energy formulas. Engineered for maximum refreshment and delivered at lightspeed to your location.'}
           </p>
           <div className="hero-cta-group">
             <Link to="/products" className="hero-cta-primary">
-              <span className="cta-text">Shop Now</span>
+              <span className="cta-text">Order Sekarang</span>
               <span className="cta-pulse"></span>
             </Link>
-            <Link to="/products" className="hero-cta-secondary">
+            {/* <Link to="/products" className="hero-cta-secondary">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="hero-icon"
@@ -80,7 +124,7 @@ const Hero = () => {
                 />
               </svg>
               Browse Menu
-            </Link>
+            </Link> */}
           </div>
           <div className="hero-features">
             <div className="hero-feature-item">
@@ -100,7 +144,7 @@ const Hero = () => {
                   />
                 </svg>
               </div>
-              <span>Hyper Delivery</span>
+              <span>Pelayanan Cepat</span>
             </div>
             <div className="hero-feature-item">
               <div className="feature-icon-container">
@@ -119,9 +163,9 @@ const Hero = () => {
                   />
                 </svg>
               </div>
-              <span>Premium Formula</span>
+              <span>Kualitas Premium</span>
             </div>
-            <div className="hero-feature-item">
+            {/* <div className="hero-feature-item">
               <div className="feature-icon-container">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +183,7 @@ const Hero = () => {
                 </svg>
               </div>
               <span>Secure Transaction</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -241,15 +285,15 @@ const Hero = () => {
 
           <div className="hero-stats">
             <div className="hero-stat-item">
-              <span className="hero-stat-number">5,000+</span>
+              <span className="hero-stat-number">{stats.orders.toLocaleString()}+</span>
               <span className="hero-stat-label">Daily Orders</span>
             </div>
             <div className="hero-stat-item">
-              <span className="hero-stat-number">15 min</span>
+              <span className="hero-stat-number">{stats.delivery} min</span>
               <span className="hero-stat-label">Average Delivery</span>
             </div>
             <div className="hero-stat-item">
-              <span className="hero-stat-number">4.9/5</span>
+              <span className="hero-stat-number">{stats.rating}/5</span>
               <span className="hero-stat-label">Customer Rating</span>
             </div>
           </div>

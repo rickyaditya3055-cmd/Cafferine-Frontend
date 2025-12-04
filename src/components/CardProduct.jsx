@@ -161,10 +161,10 @@ const CardProduct = () => {
     <section className="products-section" id="products">
       <div className="products-container">
         <div className="products-header">
-          <h2 className="products-title">Our Products</h2>
+          <h2 className="products-title">Produk Kami</h2>
           <p className="products-description">
-            Browse our selection of delicious foods and refreshing beverages. 
-            We offer a wide variety of options to satisfy your cravings.
+          Jelajahi pilihan makanan lezat dan minuman menyegarkan kami.
+          Kami menawarkan beragam pilihan untuk memuaskan selera Anda.
           </p>
         </div>
 
@@ -233,15 +233,15 @@ const CardProduct = () => {
                     {parseFloat(product.discount) > 0 ? (
                       <>
                         <div className="product-price discounted-price">
-                          ${calculateDiscountedPrice(product.price, product.discount)}
+                          Rp{calculateDiscountedPrice(product.price, product.discount)}
                         </div>
                         <div className="product-price-original">
-                          ${parseFloat(product.price).toFixed(2)}
+                          Rp{parseFloat(product.price).toFixed(2)}
                         </div>
                       </>
                     ) : (
                       <div className="product-price">
-                        ${parseFloat(product.price).toFixed(2)}
+                        Rp{parseFloat(product.price).toFixed(2)}
                       </div>
                     )}
                   </div>
@@ -250,9 +250,9 @@ const CardProduct = () => {
                 <div className="product-action-row">
                   <div className="product-quantity">
                     {product.qty > 0 ? (
-                      <span className="in-stock">In Stock</span>
+                      <span className="in-stock">Dalam Stok</span>
                     ) : (
-                      <span className="out-of-stock">Out of Stock</span>
+                      <span className="out-of-stock">Tidak Dalam Stok</span>
                     )}
                   </div>
                   <button 
@@ -267,7 +267,7 @@ const CardProduct = () => {
                 </div>
                 
                 <div className="product-details-action">
-                  <div className="view-details">View Details</div>
+                  <div className="view-details">Lihat Detail</div>
                 </div>
               </div>
             ))}

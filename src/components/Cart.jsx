@@ -1,106 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../CartContext';
-import { useAuth } from '../AuthContext';
 import "./styles/Cart.css";
 
 const Cart = () => {
   const { cartItems, cartCount, addToCart, removeFromCart } = useCart();
-  const { user } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-  const [promoCode, setPromoCode] = useState('');
-  const [promoApplied, setPromoApplied] = useState(false);
-  const [promoDiscount, setPromoDiscount] = useState(0);
-  const [showContactSection, setShowContactSection] = useState(false); // New state for contact section
 
-  // Auto-open contact section after login redirect
-  useEffect(() => {
-    if (user && location.state?.openContact) {
-      setShowContactSection(true);
-      // Clear location state to prevent re-opening
-      navigate(location.pathname, { replace: true, state: {} });
-    }
-  }, [user, location, navigate]);
-
-  // Calculate cart totals
+  // Hitung total cart (POS: tanpa ongkir & tanpa promo)
   const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   const taxRate = 0.1;
   const taxes = subtotal * taxRate;
-  const shippingCost = subtotal > 50 ? 0 : 5.99;
-  const discountAmount = subtotal * (promoDiscount / 100);
-  const total = subtotal + taxes + shippingCost - discountAmount;
+  const shippingCost = 0; // POS umumnya tanpa ongkir
+  const total = subtotal + taxes + shippingCost;
 
-  // Handle quantity change
+  // Ubah kuantitas
   const handleQuantityChange = (item, change) => {
     if (item.quantity + change <= 0) {
       removeFromCart(item.id);
     } else {
-      addToCart({
-        pro_id: item.id,
-        pro_name: item.name,
-        price: item.price,
-        image: item.image
-      }, change);
+      addToCart(
+        {
+          pro_id: item.id,
+          pro_name: item.name,
+          price: item.price,
+          image: item.image
+        },
+        change
+      );
     }
   };
 
-  // Handle remove item
+  // Hapus item
   const handleRemoveItem = (itemId) => {
     removeFromCart(itemId);
   };
 
-  // Handle apply promo code
-  const handleApplyPromo = () => {
-    const promoCodes = {
-      'CYBER10': 10,
-      'NEON20': 20,
-      'WELCOME15': 15
-    };
-    const trimmedCode = promoCode.trim().toUpperCase();
-
-    if (promoCodes[trimmedCode]) {
-      setPromoDiscount(promoCodes[trimmedCode]);
-      setPromoApplied(true);
-      showNotification(`Promo code ${trimmedCode} applied successfully!`, 'success');
-    } else if (trimmedCode) {
-      setPromoApplied(false);
-      setPromoDiscount(0);
-      showNotification('Invalid promo code. Please try again.', 'error');
-    }
-  };
-
-  // Show notification
-  const showNotification = (message, type) => {
-    const notification = document.createElement('div');
-    notification.className = `promo-notification ${type}`;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-          document.body.removeChild(notification);
-        }, 400);
-      }, 3000);
-    }, 100);
-  };
-
-  // Handle checkout click
+  // Arahkan ke halaman POS
   const handleCheckoutClick = () => {
-    if (!user) {
-      showNotification('Please log in to proceed to checkout.', 'error');
-      navigate('/login', { state: { from: '/cart', openContact: true } }); // Updated to openContact
-    } else {
-      setShowContactSection(true); // Show contact section
-    }
-  };
-
-  // Close contact section
-  const handleCloseContactSection = () => {
-    setShowContactSection(false);
+    navigate('/pos'); // langsung ke flow POS
   };
 
   return (
@@ -146,11 +84,11 @@ const Cart = () => {
                       </div>
                       <div className="item-details">
                         <h3 className="item-name">{item.name}</h3>
-                        <Link to={`/products/${item.id}`} className="view-product-link">View product</Link>
+                        <Link to={`/products/Rp{item.id}`} className="view-product-link">View product</Link>
                       </div>
                     </div>
 
-                    <div className="item-price" data-label="Price:">${item.price.toFixed(2)}</div>
+                    <div className="item-price" data-label="Price:">Rp{item.price.toFixed(2)}</div>
 
                     <div className="item-quantity">
                       <div className="quantity-control">
@@ -176,7 +114,7 @@ const Cart = () => {
                       </div>
                     </div>
 
-                    <div className="item-total" data-label="Total:">${(item.price * item.quantity).toFixed(2)}</div>
+                    <div className="item-total" data-label="Total:">Rp{(item.price * item.quantity).toFixed(2)}</div>
 
                     <div className="item-actions">
                       <button
@@ -202,59 +140,39 @@ const Cart = () => {
               <div className="summary-content">
                 <div className="summary-row">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>Rp{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="summary-row">
                   <span>Shipping</span>
-                  <span>{shippingCost === 0 ? <span className="free-shipping">FREE</span> : `$${shippingCost.toFixed(2)}`}</span>
+                  <span><span className="free-shipping">FREE</span></span>
                 </div>
                 <div className="summary-row">
                   <span>Taxes</span>
-                  <span>${taxes.toFixed(2)}</span>
+                  <span>Rp{taxes.toFixed(2)}</span>
                 </div>
-                {promoApplied && (
-                  <div className="summary-row discount">
-                    <span>Discount ({promoDiscount}%)</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
-                  </div>
-                )}
-                <div className="promo-code-container">
-                  <input
-                    type="text"
-                    placeholder="Enter promo code"
-                    className="promo-input"
-                    value={promoCode}
-                    onChange={(e) => setPromoCode(e.target.value)}
-                    aria-label="Promo code"
-                  />
-                  <button
-                    className="apply-promo-btn"
-                    onClick={handleApplyPromo}
-                    aria-label="Apply promo code"
-                  >
-                    Apply
-                  </button>
-                </div>
+
                 <div className="summary-total">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>Rp{total.toFixed(2)}</span>
                 </div>
+
                 <button
                   className="checkout-btn"
                   onClick={handleCheckoutClick}
-                  aria-label="Proceed to checkout"
+                  aria-label="Proceed to POS"
                   disabled={cartCount === 0}
                 >
-                  <span>Proceed to Checkout</span>
+                  <span>Proses Pembayaran (POS)</span>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
+
                 <p className="security-note">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="security-icon">
                     <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <span>Secure Checkout. All information is encrypted and secure.</span>
+                  <span>POS Mode. Pembayaran diproses di kasir.</span>
                 </p>
               </div>
             </div>
@@ -285,51 +203,6 @@ const Cart = () => {
             <span>Continue Shopping</span>
           </Link>
         </div>
-
-        {showContactSection && user && (
-          <div className="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
-            <div className="contact-form-container">
-              <button
-                className="close-contact-btn"
-                onClick={handleCloseContactSection}
-                aria-label="Close contact section"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </button>
-              <h2 className="contact-title" id="contact-title">Contact Us to Complete Your Order</h2>
-              <p className="contact-subtitle">
-                Please reach out to us via Telegram or Email to finalize your purchase.
-              </p>
-              <div className="contact-options">
-                <a
-                  href="https://t.me/thymuoyhak"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="contact-option"
-                  aria-label="Contact via Telegram"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="contact-icon">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.664 6.549l-1.828 8.627c-.134.632-.486.796-.984.498l-2.785-2.048-1.336 1.287c-.148.143-.274.262-.546.262l.198-2.805 5.098-4.614c.222-.2-.049-.31-.343-.114L8.39 10.54l-2.706-.837c-.582-.18-.595-.632.123-.896l10.582-4.058c.482-.185.902.224.675.9z" />
-                  </svg>
-                  <span>Contact via Telegram</span>
-                </a>
-                <a
-                  href="mailto:support@yourstore.com"
-                  className="contact-option"
-                  aria-label="Contact via Email"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="contact-icon">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                  <span>Contact via Email</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

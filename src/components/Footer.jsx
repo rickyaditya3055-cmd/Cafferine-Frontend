@@ -108,7 +108,7 @@ const Footer = () => {
         
         <div className="footer-bottom">
           <div className="footer-copyright">
-            <p className="copyright-text">&copy; {new Date().getFullYear()} DeliciousEats. All rights reserved.</p>
+            <p className="copyright-text">&copy; {new Date().getFullYear()} CaffeRine. All rights reserved.</p>
           </div>
           <div className="footer-badges">
             <span className="footer-badge">ISO Certified</span>
